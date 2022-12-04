@@ -7,6 +7,10 @@ const DevSchema = new Schema({
     founded: { type: Date },
     games: {type: Schema.Types.ObjectId, ref: "Game", required: true},
 });
+//virtual functions
+DevSchema.virtual("url").get(function () {
+    return `/catalog/dev/${this._id}`;
+})
 
 //Export model
 module.exports = mongoose.model("Dev", DevSchema);

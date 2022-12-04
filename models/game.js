@@ -9,5 +9,10 @@ const GameSchema = new Schema({
     release_date: {type: Date},
     genre: { type: Schema.Types.ObjectId, ref:"Genre", required: true }
 });
+//virtual functions
+GameSchema.virtual("url").get(function () {
+    return `/catalog/game/${this._id}`;
+})
+
 
 module.exports = mongoose.model("Game", GameSchema);
