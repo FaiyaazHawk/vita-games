@@ -86,7 +86,7 @@ function createGenres(cb) {
 }
 
 function createDevs(cb) {
-    async.series([
+    async.parallel([
         function(callback) {
             devCreate('Atlus', '1986-04-07', games[0], callback)
         },
@@ -100,7 +100,7 @@ function createDevs(cb) {
 }
 
 function createGames(cb) {
-    async.series([
+    async.parallel([
         function(callback) {
             gameCreate('Persona 4 Golden', devs[0], 'Persona 4 takes place in a fictional Japanese countryside and is indirectly related to earlier Persona games. The player-named protagonist is a high-school student who moved into the countryside from the city for a year. During his year-long stay, he becomes involved in investigating mysterious murders with a group of friends while harnessing the power to summon physical manifestations of their psyches known as a Persona.', '2008-06-10', genres[0], callback)
         },
@@ -113,10 +113,10 @@ function createGames(cb) {
     ], cb)
 }
 
-async.series([
+async.parallel([
     createGenres,
     createDevs,
-    createGames
+    createGames,
 ], 
 //optional callback
 function(err, results) {
