@@ -102,13 +102,13 @@ function createDevs(cb) {
 function createGames(cb) {
     async.series([
         function(callback) {
-            gameCreate('Persona 4 Golden', devs[0], 'Persona 4 takes place in a fictional Japanese countryside and is indirectly related to earlier Persona games. The player-named protagonist is a high-school student who moved into the countryside from the city for a year. During his year-long stay, he becomes involved in investigating mysterious murders with a group of friends while harnessing the power to summon physical manifestations of their psyches known as a Persona.', '2008-06-10', genre[0], callback)
+            gameCreate('Persona 4 Golden', devs[0], 'Persona 4 takes place in a fictional Japanese countryside and is indirectly related to earlier Persona games. The player-named protagonist is a high-school student who moved into the countryside from the city for a year. During his year-long stay, he becomes involved in investigating mysterious murders with a group of friends while harnessing the power to summon physical manifestations of their psyches known as a Persona.', '2008-06-10', genres[0], callback)
         },
         function(callback) {
-            gameCreate('Killzone: Mercenary', devs[1], 'Taking place throughout key events and locations of the first three installments of the Killzone franchise, Mercenary follows the story of Arran Danner, a mercenary hired by the ISA.', '2013-09-10', genre[1], callback)
+            gameCreate('Killzone: Mercenary', devs[1], 'Taking place throughout key events and locations of the first three installments of the Killzone franchise, Mercenary follows the story of Arran Danner, a mercenary hired by the ISA.', '2013-09-10', genres[1], callback)
         },
         function(callback) {
-            gameCreate('Uncharted: Golden Abyss', devs[2], "Golden Abyss is a prequel to the series, taking place before the events of Uncharted: Drake's Fortune. The story revolves around adventurer-treasure hunter Nathan Drake as he becomes involved in a search for the lost city of Quivira and is aided by fellow treasure hunter Marisa Chase. Gameplay combines action-adventure with platforming elements, with players solving puzzles and fighting enemies using cover-based third-person shooting.", '2012-02-15', genre[2], callback)
+            gameCreate('Uncharted: Golden Abyss', devs[2], "Golden Abyss is a prequel to the series, taking place before the events of Uncharted: Drake's Fortune. The story revolves around adventurer-treasure hunter Nathan Drake as he becomes involved in a search for the lost city of Quivira and is aided by fellow treasure hunter Marisa Chase. Gameplay combines action-adventure with platforming elements, with players solving puzzles and fighting enemies using cover-based third-person shooting.", '2012-02-15', genres[2], callback)
         }
     ], cb)
 }
