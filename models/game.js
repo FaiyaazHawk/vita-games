@@ -11,7 +11,7 @@ const GameSchema = new Schema({
 });
 //virtual functions
 GameSchema.virtual("url").get(function () {
-    return `/catalog/game/${this._id}`;
+    return `/game/${this._id}`;
 })
 
 
