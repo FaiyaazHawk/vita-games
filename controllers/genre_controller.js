@@ -44,7 +44,7 @@ exports.genre_details = (req,res,next) => {
                 return next(err);
             }
             
-            res.render("genre_detail", {
+            res.render("genre_details", {
                 title: "Genre details",
                 genre: results.genre,
                 genre_games: results.genre_games,

@@ -7,6 +7,6 @@ const genre_controller = require('../controllers/genre_controller')
 router.get('/', genre_controller.genre_list);
 
 //GET genre details for one Genre
-router.get('/genre/:id', genre_controller.genre_details);
+router.get('/:id', genre_controller.genre_details);
 
 module.exports = router;
