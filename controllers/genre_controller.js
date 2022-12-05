@@ -30,7 +30,7 @@ exports.genre_details = (req,res,next) => {
             },
 
             genre_games(callback) {
-                Game.find({genre: req.params.id}).exec(callback);
+                Game.find({ genre: req.params.id }).exec(callback);
             },
         },
         (err,results) => {
@@ -43,11 +43,11 @@ exports.genre_details = (req,res,next) => {
                 err.status = 404;
                 return next(err);
             }
-            
+            console.log(results)
             res.render("genre_details", {
                 title: "Genre details",
                 genre: results.genre,
-                genre_games: results.genre_games,
+                game_list: results.genre_games,
             })
         }
     )

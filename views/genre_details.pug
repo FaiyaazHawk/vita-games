@@ -1,17 +1,18 @@
-extends layout 
+extends layout
 
-block content 
-    h1 Genre: #{genre.name}
+block content
 
-    div 
+  h1 Genre: #{genre.name}
 
-        h4 Games 
+  div(style='margin-left:20px;margin-top:20px')
 
-        dl 
-            each game in genre_games
-             dt 
-              a(href=game.url)  #{game.title}
-             dd #{game.description}
+    h4 Games
 
-            else 
-             p This genre has no games
+    dl
+      each game in game_list
+        dt
+          a(href=game.url) #{game.title}
+        dd #{game.description}
+
+      else
+        p This genre has no games
