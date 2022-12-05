@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const GameSchema = new Schema({
     title: {type: String, required: true },
-    developer: {type: Schema.Types.ObjectId, ref:"Dev", },
+    dev: {type: Schema.Types.ObjectId, ref:"Dev", required: true},
     description: {type: String, required: true },
     release_date: {type: Date},
-    genre: [{ type: Schema.Types.ObjectId, ref:"Genre", required: false}]
+    genre: [{ type: Schema.Types.ObjectId, ref:"Genre", }],
 });
 //virtual functions
 GameSchema.virtual("url").get(function () {

@@ -39,10 +39,10 @@ function devCreate(name, founded, games, cb) {
     });
 }
 
-function gameCreate(title, developer, description, release_date, genre, cb) {
+function gameCreate(title, dev, description, release_date, genre, cb) {
     gamedetail = {title: title, description:description, release_date:release_date}
 
-    if (developer != false) gamedetail.developer = developer;
+    if (dev != false) gamedetail.dev = dev;
     if (genre != false) gamedetail.genre = genre;
 
     let game = new Game (gamedetail);
