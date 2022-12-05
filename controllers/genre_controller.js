@@ -8,13 +8,14 @@ const Game = require("../models/game")
 exports.genre_list = (req,res,next) => {
     Genre.find()
         .sort([["name", "ascending"]])
-        .exec(function (err, genre_list) {
+        .exec(function (err, list_genre) {
             if (err) {
+                console.log(err)
                 return next(err);
             }
         res.render("genre_list", {
             title: "Genre list",
-            genre_list: genre_list,
+            genre_list: list_genre,
         });
         });
 };
