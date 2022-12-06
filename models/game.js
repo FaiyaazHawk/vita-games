@@ -7,7 +7,7 @@ const GameSchema = new Schema({
     dev: {type: Schema.Types.ObjectId, ref:"Dev", },
     description: {type: String, required: true },
     release_date: {type: Date},
-    genre: { type: Schema.Types.ObjectId, ref:"Genre", },
+    genres: [{ type: Schema.Types.ObjectId, ref:"Genre", }],
 });
 //virtual functions
 GameSchema.virtual("url").get(function () {

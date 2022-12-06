@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const DevSchema = new Schema({
     name: {type:String, required: true, maxLength: 100 },
     founded: { type: Date },
-    games: {type: Schema.Types.ObjectId, ref: "Game", },
+    games: [{type: Schema.Types.ObjectId, ref: "Game", }],
 });
 //virtual functions
 DevSchema.virtual("url").get(function () {

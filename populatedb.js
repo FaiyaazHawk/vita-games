@@ -17,15 +17,14 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-//storage
+//temp storage
 var devs = []
 var games = []
 var genres = []
 
 function devCreate(name, founded, games, cb) {
-    devdetail = {name:name, founded:founded}
+    devdetail = {name:name, founded:founded, games:games}
     
-    if (games != false) devdetail.games = games
 
     let dev = new Dev(devdetail);
     dev.save(function (err) {
@@ -40,11 +39,9 @@ function devCreate(name, founded, games, cb) {
 }
 
 function gameCreate(title, dev, description, release_date, genre, cb) {
-    gamedetail = {title: title, description:description, release_date:release_date}
+    gamedetail = {title: title, dev:dev, description:description, release_date:release_date, genre:genre}
 
-    if (dev != false) gamedetail.dev = dev;
-    if (genre != false) gamedetail.genre = genre;
-
+    
     let game = new Game (gamedetail);
     game.save(function (err) {
         if(err) {
@@ -86,7 +83,7 @@ function createGenres(cb) {
 }
 
 function createDevs(cb) {
-    async.parallel([
+    async.series([
         function(callback) {
             devCreate('Atlus', '1986-04-07', games[0], callback)
         },
@@ -100,7 +97,7 @@ function createDevs(cb) {
 }
 
 function createGames(cb) {
-    async.parallel([
+    async.series([
         function(callback) {
             gameCreate('Persona 4 Golden', devs[0], 'Persona 4 takes place in a fictional Japanese countryside and is indirectly related to earlier Persona games. The player-named protagonist is a high-school student who moved into the countryside from the city for a year. During his year-long stay, he becomes involved in investigating mysterious murders with a group of friends while harnessing the power to summon physical manifestations of their psyches known as a Persona.', '2008-06-10', genres[0], callback)
         },
@@ -113,10 +110,10 @@ function createGames(cb) {
     ], cb)
 }
 
-async.parallel([
+async.series([
     createGenres,
-    createDevs,
     createGames,
+    createDevs,
 ], 
 //optional callback
 function(err, results) {
