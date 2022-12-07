@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+
+    h1 Title: #{game_details.title}
+
+    h2 Description 
+    p #{game_details.description}
+
+    h3 Release date 
+    p #{game_details.release_date}
+
+    h4 Genres 
+        each genre in game_genres 
+            p genre

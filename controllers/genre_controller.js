@@ -10,7 +10,6 @@ exports.genre_list = (req,res,next) => {
         .sort([["name", "ascending"]])
         .exec(function (err, list_genre) {
             if (err) {
-                console.log(err)
                 return next(err);
             }
         res.render("genre_list", {
@@ -43,7 +42,6 @@ exports.genre_details = (req,res,next) => {
                 err.status = 404;
                 return next(err);
             }
-            console.log(results)
             res.render("genre_details", {
                 title: "Genre details",
                 genre: results.genre,

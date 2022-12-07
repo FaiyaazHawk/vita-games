@@ -14,3 +14,18 @@ exports.games_list = (req,res,next) => {
         });
         })
 }
+
+//show details of one game
+exports.game_detail = (req,res,next) => {
+    Game.findById(req.params.id)
+        .exec(function (err, details) {
+            if (err) {
+                return next(err);
+            }
+            console.log(details)
+            res.render("game_details", {
+                game_details: details,
+                game_genres: details.genres
+            });
+        });
+}

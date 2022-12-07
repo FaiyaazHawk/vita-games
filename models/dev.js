@@ -9,7 +9,7 @@ const DevSchema = new Schema({
 });
 //virtual functions
 DevSchema.virtual("url").get(function () {
-    return `/dev/${this._id}`;
+    return `/devs/${this._id}`;
 })
 
 //Export model
