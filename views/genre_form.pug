@@ -4,7 +4,6 @@ block content
 
     h1= title
     form(method='POST' action='')
-    div.form-group
       label(for='name') Genre:
       input(type='text', placeholder='Action, Shooter etc.' name='name' value=(undefined===genre ? '' : genre.name))
       button(type='submit') Submit
