@@ -1,4 +1,7 @@
 #! /usr/bin/env node
+
+//buggy script. had to make manual changes on mongodb after running script. fixing it is not in the scope of the project
+
 console.log('script that populates some games')
 // Get arguments passed on command line
 var userArgs = process.argv.slice(2);

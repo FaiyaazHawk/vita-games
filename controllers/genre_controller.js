@@ -1,6 +1,7 @@
 const Genre = require("../models/genre");
 const async = require("async");
-const Game = require("../models/game")
+const Game = require("../models/game");
+
 
 
 //Show full list of genres
@@ -50,3 +51,36 @@ exports.genre_details = (req,res,next) => {
         }
     )
 }
+
+// Show genre create on GET
+exports.genre_create_get = (req,res,next) => {
+    res.render('genre_form', {title: 'Create Genre'})
+}
+
+//Handle genre create on POST
+exports.genre_create_post = (req, res, next) => {
+    console.log('hits function');
+    //check if genre with same name exists
+    Genre.findOne({name: req.body.name}).exec(err, found_genre)
+    if (err) {
+        return next(err);   
+    }
+    if (found_genre) {
+        //genre found, redirect back to create page with message
+        res.render("genre_form", {
+            title: "Create Genre",
+            message: "Genre already exists, Try again"
+        })
+    } else {
+        //create new genre and save. Then go to its detail page
+        const genre = new Genre({name:req.body.name})
+        genre.save((err)=> {
+            if(err) {
+                return next(err);
+            }
+            res.redirect(genre.url);
+        })
+    }
+}
+
+
