@@ -22,7 +22,6 @@ exports.game_detail = (req,res,next) => {
             if (err) {
                 return next(err);
             }
-            console.log(details)
             res.render("game_details", {
                 game_details: details,
                 game_genres: details.genres

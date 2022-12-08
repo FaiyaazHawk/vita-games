@@ -29,7 +29,7 @@ exports.genre_details = (req,res,next) => {
             },
 
             genre_games(callback) {
-                Game.find({ genre: req.params.id }).exec(callback);
+                Game.find({ genres: req.params.id }).exec(callback);
             },
         },
         (err,results) => {

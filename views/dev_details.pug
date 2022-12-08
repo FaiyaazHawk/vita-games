@@ -1,0 +1,12 @@
+extends layout 
+
+block content 
+
+    h1 Name: #{dev_details.name}
+
+    h2 Founded 
+    p #{dev_details.founded}
+
+    h4 Games: 
+        each game in games 
+             a(href=game.url) #{game.title} 
