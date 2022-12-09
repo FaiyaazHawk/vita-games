@@ -9,3 +9,8 @@ block content
       button(type='submit') Submit
 
     h2= message
+
+    if errors 
+      ul 
+        for error in errors 
+          li= error.msg

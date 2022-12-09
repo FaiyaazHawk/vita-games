@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+
+    h1= title
+    form(method='POST' action='')
+      label(for='name') Developer:
+      input(type='text', placeholder='Developer Name' name='name' value=(undefined===dev ? '' : dev.name))
+      label(for='founded') Founded:
+      input(type='date', name='founded')
+      button(type='submit') Submit
+
+    h2= message
+
+    if errors 
+      ul 
+        for error in errors 
+          li= error.msg
