@@ -1,4 +1,7 @@
 const Game = require("../models/game")
+const Dev = require('../models/dev')
+const Genre = require('../models/genre')
+const async = require('async')
 
 //display list of games
 exports.games_list = (req,res,next) => {
@@ -28,3 +31,35 @@ exports.game_detail = (req,res,next) => {
             });
         });
 }
+
+// game create on get
+
+exports.game_create_get = (req,res,next) => {
+    //async to get games and genres
+    async.parallel(
+        {
+            games(callback) {
+                Game.find(callback);
+            },
+            genres(callback) {
+                Genre.find(callback)
+            },  
+        },
+        (err, results) => {
+            if(err) {
+                return next(err);
+            }
+            console.log(results)
+            res.render("game_form",{
+                title: "Create game page",
+                games: results.games,
+                genres: results.genres
+            })
+        }
+    )
+    
+}
+
+// game create on post
+
+exports.game_create_post = []
