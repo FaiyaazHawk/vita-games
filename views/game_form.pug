@@ -6,10 +6,23 @@ block content
     form(method='POST' action='')
       label(for='title') Title:
       input(type='text', placeholder='Game Name' name='title')
+      
       label(for='description') Description:
       input(type='text-area', name='description')
+      
       label(for='release_date') Release Date: 
       input(type='date', name='release_date')
+
+      label(for="devs") Developer
+      select(type='select', placeholder='Select developer', name='devs', required='true')
+        for dev in devs 
+            option(value=dev._id) #{dev.name}
+    
+      label(for="genres") Genre 
+      select(type='select', placeholder='Select genre', name='genres', required='true')
+        for genre in genres 
+            option(value=genre._id) #{genre.name}
+
       button(type='submit') Submit
 
     h2= message

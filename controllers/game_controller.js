@@ -38,8 +38,8 @@ exports.game_create_get = (req,res,next) => {
     //async to get games and genres
     async.parallel(
         {
-            games(callback) {
-                Game.find(callback);
+            devs(callback) {
+                Dev.find(callback);
             },
             genres(callback) {
                 Genre.find(callback)
@@ -49,10 +49,9 @@ exports.game_create_get = (req,res,next) => {
             if(err) {
                 return next(err);
             }
-            console.log(results)
             res.render("game_form",{
                 title: "Create game page",
-                games: results.games,
+                devs: results.devs,
                 genres: results.genres
             })
         }
