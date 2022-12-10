@@ -3,23 +3,23 @@ extends layout
 block content 
 
     h1= title
-    form(method='POST' action='')
+    form(method='post' action='')
       label(for='title') Title:
-      input(type='text', placeholder='Game Name' name='title')
+      input(type='text', placeholder='Game Name' name='title', value=(undefined===game ? '' : game.title))
       
       label(for='description') Description:
-      input(type='text-area', name='description')
+      input(type='text-area', name='description', value=(undefined===game ? '' : game.description) )
       
       label(for='release_date') Release Date: 
-      input(type='date', name='release_date')
+      input(type='date', name='release_date', value=(undefined===game ? '' : game.release_date))
 
-      label(for="devs") Developer
-      select(type='select', placeholder='Select developer', name='devs', required='true')
+      label(for="dev") Developer
+      select(type='select', placeholder='Select developer', name='dev', required='true', value=(undefined===game ? '' : game.dev) )
         for dev in devs 
             option(value=dev._id) #{dev.name}
     
       label(for="genres") Genre 
-      select(type='select', placeholder='Select genre', name='genres', required='true')
+      select(type='select', placeholder='Select genre', name='genres', required='true', value=(undefined===game ? '' : game.genres))
         for genre in genres 
             option(value=genre._id) #{genre.name}
 
