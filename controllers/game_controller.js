@@ -80,7 +80,7 @@ exports.game_create_post = [
         //generate errors object
         const errors = validationResult(req);
         //make new game item with data
-        console.log(req)
+        console.log(req.body)
         const game = new Game({
             title: req.body.title,
             description: req.body.description,

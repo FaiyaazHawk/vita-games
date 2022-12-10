@@ -67,6 +67,7 @@ exports.dev_create_post = [
         //see if errors
         const errors = validationResult(req);
         //make new dev object
+        
         const dev = new Dev({name: req.body.name, founded: req.body.founded})
 
         if(!errors.isEmpty()) {
