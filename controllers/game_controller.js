@@ -21,15 +21,32 @@ exports.games_list = (req,res,next) => {
 
 //show details of one game
 exports.game_detail = (req,res,next) => {
+    
     Game.findById(req.params.id)
         .exec(function (err, details) {
             if (err) {
                 return next(err);
             }
-            res.render("game_details", {
-                game_details: details,
-                game_genres: details.genres
-            });
+            //get dev and genre names from ids
+            console.log(details.dev)
+            async.parallel(
+                {
+                    dev_name(callback) {
+                        Dev.find({_id: details.dev}, callback)
+                    }
+                },
+                (err,results) => {
+                    console.log(results.dev_name[0].name);
+                    res.render("game_details", {
+                        game_details: details,
+                        genres: details.genres,
+                        dev: results.dev_name[0].name,
+                    });
+                }
+                
+            )
+            
+            
         });
 }
 

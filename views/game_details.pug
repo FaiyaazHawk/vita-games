@@ -7,9 +7,12 @@ block content
     h2 Description 
     p #{game_details.description}
 
-    h3 Release date 
+    h3 Developer 
+    p #{dev}
+    
+    h4 Release date 
     p #{game_details.release_date}
 
     h4 Genres 
-        each genre in game_genres 
+        each genre in genres 
             p genre
