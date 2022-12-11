@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 
 //routers
 const indexRouter = require('./routes/index');
@@ -15,6 +16,7 @@ var app = express();
 //connection to Mongo DB
 // Set up mongoose connection
 const mongoose = require("mongoose");
+const { type } = require('os');
 const mongoDB = "mongodb+srv://Fhawk:Mongo@cluster0.awfm5pd.mongodb.net/vitastore?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -26,6 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //middleware
 app.use(logger('dev'));
+app.use(bodyParser.json())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

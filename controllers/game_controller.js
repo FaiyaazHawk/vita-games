@@ -76,11 +76,11 @@ exports.game_create_post = [
         .isISO8601()
         .toDate(),
     //check for errors
-    (res,req,next)=> {
+    (req,res,next)=> {
         //generate errors object
         const errors = validationResult(req);
         //make new game item with data
-        console.log(req.body)
+        console.log(req)
         const game = new Game({
             title: req.body.title,
             description: req.body.description,
