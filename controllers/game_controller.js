@@ -28,7 +28,7 @@ exports.game_detail = (req,res,next) => {
                 return next(err);
             }
             //get dev and genre names from ids
-            console.log(details.dev)
+            console.log(details.genres)
             async.parallel(
                 {
                     dev_name(callback) {
@@ -36,11 +36,11 @@ exports.game_detail = (req,res,next) => {
                     }
                 },
                 (err,results) => {
-                    console.log(results.dev_name[0].name);
+                    console.log(results);
                     res.render("game_details", {
                         game_details: details,
-                        genres: details.genres,
-                        dev: results.dev_name[0].name,
+                        dev: results.dev_name[0],
+                        genres: details.genres
                     });
                 }
                 
