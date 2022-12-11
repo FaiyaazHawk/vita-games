@@ -33,14 +33,17 @@ exports.game_detail = (req,res,next) => {
                 {
                     dev_name(callback) {
                         Dev.find({_id: details.dev}, callback)
+                    },
+                    genre_list(callback) {
+                        Genre.find({_id:{$in:details.genres}}, callback)
                     }
                 },
                 (err,results) => {
-                    console.log(results);
+                    
                     res.render("game_details", {
                         game_details: details,
                         dev: results.dev_name[0],
-                        genres: details.genres
+                        genres: results.genre_list
                     });
                 }
                 

@@ -14,5 +14,6 @@ block content
     p #{game_details.release_date}
 
     h4 Genres 
-        each genre in genres 
-            p genre
+        each genre in genres
+            br 
+            a(href=genre.url) #{genre.name}
