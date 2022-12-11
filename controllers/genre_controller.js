@@ -103,4 +103,32 @@ exports.genre_create_post = [
     },
   ]; 
 
+//GET update page
+
+exports.genre_update_get = (req,res,next) => {
+  
+  async.parallel(
+    {
+      genre(callback) {
+        Genre.findById({_id: req.params.id}, callback)
+      }
+    },
+    (err, results)=> {
+      if(err) {
+        return next(err)
+      }
+      res.render("genre_form", {
+        title: "Update Genre",
+        genre: results.genre,
+      })
+    }
+  )
+  
+};
+
+//POST update page
+
+exports.genre_update_post = (req, res, next) => {
+
+};
 
