@@ -16,7 +16,7 @@ router.post('/create', genre_controller.genre_create_post);
 router.get('/:id/update', genre_controller.genre_update_get);
 
 //POST genre update page
-router.post('/update', genre_controller.genre_update_post);
+router.post('/:id/update', genre_controller.genre_update_post);
 
 //GET genre details for one Genre
 router.get('/:id', genre_controller.genre_details);

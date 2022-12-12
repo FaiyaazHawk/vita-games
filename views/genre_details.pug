@@ -7,7 +7,6 @@ block content
   div(style='margin-left:20px;margin-top:20px')
 
     h4 Games
-    
 
     dl
       each game in game_list
@@ -16,7 +15,10 @@ block content
         dd #{game.description}
 
       else
-        p This genre has no games
+        p This genre has no games yet
   
   a(href=`${genre.url}/update`)
    button(type="button") Update Genre
+
+  br
+  a(href='/') Home Screen

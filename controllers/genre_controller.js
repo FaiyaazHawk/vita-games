@@ -126,9 +126,53 @@ exports.genre_update_get = (req,res,next) => {
   
 };
 
-//POST update page
+//POST update genre page
 
-exports.genre_update_post = (req, res, next) => {
+exports.genre_update_post = [
+  body('name', 'name must be specified')
+    .trim()
+    .isLength({min:1})
+    .escape(),
 
-};
+  (req,res,next)=> {
+    const errors = validationResult(req);
+    const genre = new Genre({name: req.body.name, _id: req.params.id})
+
+    //if error, rerender page
+    if(!errors.isEmpty()) {
+      res.render('genre_form',{
+        title: "Update Genre: Validation error",
+        genre: genre,
+      })
+    } else {
+      //check if genre exists with same name, if so, redirect to that page
+      async.parallel(
+        {
+          genre_name(callback) {
+            Genre.find({name: genre.name}, callback);
+          }
+        },
+        (err,results) => {
+            if (err) {
+              return next (err)
+            }
+            if(results.genre_name.length > 0) {
+              //found entry with same name
+              console.log("hits here")
+              res.redirect(results.genre_name[0].url);
+            } else {
+              console.log("hits there")
+              Genre.findByIdAndUpdate(req.params.id, genre, {}, function (err, updatedgenre) {
+                if (err) return next(err);
+                res.redirect(updatedgenre.url);
+              })
+            }
+        }
+      )
+
+    }
+  }
+];
+  
+
 
