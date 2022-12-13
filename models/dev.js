@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {DateTime} = require("luxon");
 
 const Schema = mongoose.Schema;
 
@@ -10,6 +11,10 @@ const DevSchema = new Schema({
 //virtual functions
 DevSchema.virtual("url").get(function () {
     return `/devs/${this._id}`;
+})
+DevSchema.virtual("formatted_date").get(function () {
+    return this.founded ?
+    DateTime.fromJSDate(this.founded).toISODate() : '';
 })
 
 //Export model

@@ -3,11 +3,12 @@ extends layout
 block content 
 
     h1= title
+
     form(method='POST' action='')
       label(for='name') Developer:
-      input(type='text', placeholder='Developer Name' name='name' value=(undefined===dev ? '' : dev.name))
+      input(type='text', placeholder='Developer Name' name='name' value=(undefined===dev_details ? '' : dev_details.name))
       label(for='founded') Founded:
-      input(type='date', name='founded')
+      input(type='date', name='founded', value=(undefined===dev_details ? '' : founded_date))
       button(type='submit') Submit
 
     h2= message

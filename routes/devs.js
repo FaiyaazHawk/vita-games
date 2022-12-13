@@ -12,6 +12,12 @@ router.get('/create', dev_controller.dev_create_get);
 //POST genre for a dev
 router.post('/create', dev_controller.dev_create_post);
 
+//GET genre update page
+router.get('/:id/update', dev_controller.dev_update_get);
+
+//POST genre update page
+router.post('/:id/update', dev_controller.dev_update_post);
+
 //GET dev details
 router.get('/:id', dev_controller.dev_details)
 

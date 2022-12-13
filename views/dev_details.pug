@@ -10,3 +10,9 @@ block content
     h4 Games: 
         each game in games 
              a(href=game.url) #{game.title} 
+
+    a(href=`${dev_details.url}/update`)
+        button(type="button") Update Developer
+
+    br
+    a(href='/') Home Screen

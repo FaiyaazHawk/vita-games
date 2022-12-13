@@ -103,3 +103,31 @@ exports.dev_create_post = [
     }
 ]
 
+//GET dev update
+
+exports.dev_update_get = (req,res,next) => {
+    async.parallel(
+        {
+            dev_details(callback) {
+                Dev.find({_id: req.params.id}, callback)
+            }
+        },
+        (err,results) => {
+            if (err){
+                return next (err)
+            }
+            
+            res.render("dev_form", {
+                title: "Update Developer form",
+                dev_details: results.dev_details[0],
+                founded_date: results.dev_details[0].formatted_date
+            })
+        }
+    )
+}
+
+//POST dev update
+
+exports.dev_update_post = [
+
+]
