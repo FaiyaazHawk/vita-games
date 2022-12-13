@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {DateTime} = require('luxon')
 
 const Schema = mongoose.Schema;
 
@@ -12,6 +13,11 @@ const GameSchema = new Schema({
 //virtual functions
 GameSchema.virtual("url").get(function () {
     return `/games/${this._id}`;
+})
+
+GameSchema.virtual("format_date").get(function () {
+    return this.release_date ?
+    DateTime.fromJSDate(this.release_date).toISODate() : '';
 })
 
 

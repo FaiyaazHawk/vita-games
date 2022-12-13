@@ -11,7 +11,7 @@ block content
       input(type='text-area', name='description', value=(undefined===game ? '' : game.description) )
       
       label(for='release_date') Release Date: 
-      input(type='date', name='release_date', value=(undefined===game ? '' : game.release_date))
+      input(type='date', name='release_date', value=(undefined===game ? '' :release_date))
 
       label(for="dev") Developer
       select(type='select', placeholder='Select developer', name='dev', required='true', value=(undefined===game ? '' : game.dev) )

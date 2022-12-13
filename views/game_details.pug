@@ -17,7 +17,8 @@ block content
         each genre in genres
             br 
             a(href=genre.url) #{genre.name}
-
+    a(href=`${game_details.url}/update`)
+        button(type="button") Update Game Details
 
     br
     a(href='/') Home Screen
