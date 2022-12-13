@@ -2,6 +2,7 @@ const Dev = require("../models/dev");
 const Game = require("../models/game")
 const async = require("async");
 const {body, validationResult} = require("express-validator")
+const {DateTime} = require("luxon")
 
 
 //Show full list of genres
@@ -34,7 +35,6 @@ exports.dev_details = (req,res,next) => {
             if (err) {
                 return next(err);
             }
-            console.log(results)
             res.render("dev_details", {
                 dev_details: results.details,
                 games: results.gamename
@@ -120,7 +120,7 @@ exports.dev_update_get = (req,res,next) => {
             res.render("dev_form", {
                 title: "Update Developer form",
                 dev_details: results.dev_details[0],
-                founded_date: results.dev_details[0].formatted_date
+                founded_date: results.dev_details[0].format_date
             })
         }
     )
@@ -129,5 +129,39 @@ exports.dev_update_get = (req,res,next) => {
 //POST dev update
 
 exports.dev_update_post = [
+    //validation
+    body("name", "name is required")
+        .trim()
+        .isLength({min:1})
+        .escape(),
+    body("founded", "date is optional")
+        .optional({ checkFalsy: true })
+        .isISO8601()
+        .toDate(),
+    (req,res,next) => {
+        //check for errors
+        const errors = validationResult(req)
+        //make new dev object
+        const dev = {name:req.body.name, founded:req.body.founded};
+        //for those who put an existing dev name in here...I boo you
+        
+        if(!errors.isEmpty()){
+            //there are errors
+            //rerender form with updated data
+            
+            res.render("dev_form", {
+                title: "Update Developer form. Please enter valid info",
+                dev_details: dev,
+                founded_date: DateTime.fromJSDate(dev.founded).toISODate()///doesnt work for some reason, maybe cause dev isnt a Dev model object
+                
+            })
+            return;
+        } else {
+            Dev.findByIdAndUpdate(req.params.id, dev, {}, function(err,updatedDev) {
+               if (err) return next(err) ;
+               res.redirect(updatedDev.url);
+            })
+        }
 
+    }
 ]

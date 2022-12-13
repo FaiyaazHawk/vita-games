@@ -12,7 +12,7 @@ const DevSchema = new Schema({
 DevSchema.virtual("url").get(function () {
     return `/devs/${this._id}`;
 })
-DevSchema.virtual("formatted_date").get(function () {
+DevSchema.virtual("format_date").get(function () {
     return this.founded ?
     DateTime.fromJSDate(this.founded).toISODate() : '';
 })
