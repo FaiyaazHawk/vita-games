@@ -169,7 +169,7 @@ exports.dev_update_post = [
 //dev delete GET
 exports.dev_delete_get = (req,res,next) => {
     //get dev details and id
-    console.log(req.params.id)
+    
     async.parallel(
         {
             dev(callback) {

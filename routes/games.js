@@ -9,14 +9,20 @@ router.get('/', game_controller.games_list);
 //GET game creation page
 router.get('/create', game_controller.game_create_get);
 
-//POST genre for a dev
+//POST game creation page
 router.post('/create', game_controller.game_create_post);
 
-//GET genre update page
+//GET game update page
 router.get('/:id/update', game_controller.game_update_get);
 
-//POST genre update page
+//POST game update page
 router.post('/:id/update', game_controller.game_update_post);
+
+//GET game delete page
+router.get('/:id/delete', game_controller.game_delete_get);
+
+//POST game delete page
+router.post('/:id/delete', game_controller.game_delete_post);
 
 //Get games detail for single game
 

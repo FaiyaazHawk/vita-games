@@ -237,3 +237,33 @@ exports.game_update_post = [
         
     }
 ]
+
+//GET game delete page
+exports.game_delete_get = (req,res,next) => {
+    async.parallel(
+        {
+            game(callback) {
+                Game.findOne({_id: req.params.id}, callback)
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next (err)
+            }
+            console.log(results.game)
+            res.render("delete_game_form", {
+                title: "Delete Game form",
+                type: "game",
+                game: results.game,
+            })
+
+        }
+    )
+}
+//POST game delete page
+exports.game_delete_post = (req,res,next) => {
+    Game.findByIdAndDelete(req.params.id, (err)=> {
+        if (err) return next (err);
+        res.redirect("/")
+    })
+}
