@@ -165,3 +165,37 @@ exports.dev_update_post = [
 
     }
 ]
+
+//dev delete GET
+exports.dev_delete_get = (req,res,next) => {
+    //get dev details and id
+    console.log(req.params.id)
+    async.parallel(
+        {
+            dev(callback) {
+                Dev.findOne({_id: req.params.id}, callback)
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next (err)
+            }
+            console.log(results.dev)
+            res.render("delete_dev_form", {
+                title: "Delete Developer form",
+                type: "developer",
+                dev: results.dev,
+            })
+
+        }
+    )
+}
+//dev delete POST
+exports.dev_delete_post = (req,res,next) => {
+    Dev.findByIdAndDelete(req.params.id, (err) => {
+        if (err) {
+          return next (err);
+        }
+        res.redirect("/");
+      })
+}
