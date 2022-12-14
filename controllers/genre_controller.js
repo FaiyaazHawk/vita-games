@@ -1,7 +1,8 @@
 const Genre = require("../models/genre");
 const async = require("async");
 const Game = require("../models/game");
-const {body, validationResult} = require("express-validator")
+const {body, validationResult} = require("express-validator");
+const { restart } = require("nodemon");
 
 
 //Show full list of genres
@@ -173,6 +174,36 @@ exports.genre_update_post = [
     }
   }
 ];
-  
+
+//GET delete genre
+exports.genre_delete_get = (req,res,next) => {
+    //get genre details and id
+    async.parallel(
+      {
+        genre(callback) {
+          Genre.findOne({_id: req.params.id},callback)
+        }
+      },
+      (err,results)=> {
+        if(err) return next(err);
+        res.render("delete_genre_form", {
+          title: "Delete Genre form",
+          type: "genre",
+          genre:results.genre,
+        })
+      }
+    )  
+
+    
+}
+//POST delete genre
+exports.genre_delete_post = (req,res,next) => {
+  Genre.findByIdAndDelete(req.params.id, (err) => {
+    if (err) {
+      return next (err);
+    }
+    res.redirect("/");
+  })
+}
 
 
