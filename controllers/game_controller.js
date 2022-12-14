@@ -250,7 +250,6 @@ exports.game_delete_get = (req,res,next) => {
             if (err) {
                 return next (err)
             }
-            console.log(results.game)
             res.render("delete_game_form", {
                 title: "Delete Game form",
                 type: "game",
